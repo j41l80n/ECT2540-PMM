@@ -1,3 +1,3 @@
 # ECT2540-PMM
 
-## teste
+## Repositório para as listas da disciplina de PMM
