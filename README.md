@@ -1,4 +1,4 @@
-# ECT2540-PMM
+# ECT2540 - Projetos com Micocontroladores e Minicomputadores
 
 ## Repositório para as listas da disciplina de PMM
 ## Mini Projeto 1
