@@ -63,7 +63,6 @@ void loop() {
   if (estado == 8 && digitalRead(A0)) {
     delay(10);
     estado = 9;
-
   }
 
   // estado 9
