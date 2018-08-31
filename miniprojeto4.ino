@@ -17,32 +17,35 @@ void loop() {
   // estado 1
   if (estado == 1 && tempoAtual - tempoInicial >= 500) {
       digitalWrite(LED, HIGH);
+      tempoInicial = millis();
       estado = 2;
       delay(50);
     }
-  }
 
-  // estado 1
+  // estado 2
   if (estado == 2 && tempoAtual - tempoInicial >= 300) {
+      tempoInicial = millis();
       digitalWrite(LED, LOW);
-      estado = 2;
+      estado = 3;
       delay(50);
-    }
+    
   }
 
-   // estado 1
+   // estado 3
   if (estado == 3 && tempoAtual - tempoInicial >= 500) {
       digitalWrite(LED, HIGH);
+      tempoInicial = millis();
       estado = 4;
       delay(50);
-    }
+    
   }
 
-  // estado 1
-  if (estado == 2 && tempoAtual - tempoInicial >= 100) {
+  // estado 4
+  if (estado == 4 && tempoAtual - tempoInicial >= 100) {
       digitalWrite(LED, LOW);
-      estado = 2;
+      tempoInicial = millis();
+      estado = 1;
       delay(50);
-    }
+    
   }
 }
