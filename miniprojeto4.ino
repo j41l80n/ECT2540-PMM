@@ -1,9 +1,15 @@
 #define LED 13
 #define BOTAO A0
+#define PONTO 100
+#define PAUSA 200
+#define TRACO 300
+#define ESPERA
 
 int estado = 1;
 int tempoAtual = 0;
 int tempoInicial = 0;
+int incomingByte = 0;
+int vetor[100];
 
 void setup() {
   Serial.begin(9600);
@@ -11,41 +17,76 @@ void setup() {
 }
 
 void loop() {
-  tempoAtual = millis();
-  Serial.println(estado);
+  if (Serial.available() > 0) {
+    incomingByte = Serial.read();
+    
+    if (incomingByte == 65 || incomingByte == 97)
+    {
+      morceA();
+    }
+    if (incomingByte == 69 || incomingByte == 101)
+    {
+      morceE();
+    }
+    if (incomingByte == 73 || incomingByte == 105)
+    {
+      morceI();
+    }
+    if (incomingByte == 79 || incomingByte == 111)
+    {
+      morceO();
+    }
+    if (incomingByte == 85 || incomingByte == 117)
+    {
+      morceU();
+    }
+    delay(500);
+  }
+}
 
-  // estado 1
-  if (estado == 1 && tempoAtual - tempoInicial >= 500) {
+void morceA() {
+  sinal(PONTO);
+  sinal(TRACO);
+}
+
+void morceE() {
+  sinal(PONTO);
+}
+
+void morceI() {
+  sinal(PONTO);
+  sinal(PONTO);
+}
+
+void morceO() {
+  sinal(TRACO);
+  sinal(TRACO);
+  sinal(TRACO);
+}
+
+void morceU() {
+  sinal(PONTO);
+  sinal(PONTO);
+  sinal(TRACO);
+}
+
+void sinal(int tempo) {
+  estado = 1;
+  while (estado <= 2) {
+    tempoAtual = millis();
+    // estado 1
+    if (estado == 1 && tempoAtual - tempoInicial >= PAUSA) {
       digitalWrite(LED, HIGH);
       tempoInicial = millis();
-      estado = 2;
+      estado++;
       delay(50);
     }
-
-  // estado 2
-  if (estado == 2 && tempoAtual - tempoInicial >= 300) {
+    // estado 2
+    if (estado == 2 && tempoAtual - tempoInicial >= tempo) {
       tempoInicial = millis();
       digitalWrite(LED, LOW);
-      estado = 3;
+      estado++;
       delay(50);
-    
-  }
-
-   // estado 3
-  if (estado == 3 && tempoAtual - tempoInicial >= 500) {
-      digitalWrite(LED, HIGH);
-      tempoInicial = millis();
-      estado = 4;
-      delay(50);
-    
-  }
-
-  // estado 4
-  if (estado == 4 && tempoAtual - tempoInicial >= 100) {
-      digitalWrite(LED, LOW);
-      tempoInicial = millis();
-      estado = 1;
-      delay(50);
-    
+    }
   }
 }
