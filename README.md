@@ -15,3 +15,5 @@ Apresentar	na	serial	quantas	vezes	o	botão	foi	pressionado	e,	quando	receber	a	
 Faça um projeto que altere a intensidade de um LED, usando pwm, baseado em valores enviados pelo potenciômetro, lidos utilizando uma porta analógica. Inclua na montagem um botão “offset” que, ao ser pressionado, torna a tensão lida no momento equivalente a uma intensidade de LED igual a zero (apagado). Apresente o valor de “offset” na serial quando o botão for pressionado.
 
 <img src="miniprojeto1.png" width="350" height="350">
+
+## Miniprojeto 4
