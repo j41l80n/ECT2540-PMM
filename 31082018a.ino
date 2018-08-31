@@ -13,31 +13,41 @@ void setup() {
 
 void loop() {
   tempoAtual = millis();
-  
+  Serial.println(estado);
+
   // estado 1
   if (estado == 1 && !digitalRead(A0)) {
     digitalWrite(LED, HIGH);
-    estado = 2;
     tempoInicial = millis();
+    estado = 2;
     delay(50);
   }
 
-  if(tempoAtual-tempoInicial >= 3000){
-    digitalWrite(LED, LOW);
-    estado = 1;
-  }
- 
   // estado 2
-  if (estado == 2 && digitalRead(BOTAO)) {
-    estado = 3;
-    delay(50);
+  if (estado == 2) {
+    if (digitalRead(BOTAO)) {
+      estado = 3;
+      delay(50);
+    }
+    if (tempoAtual - tempoInicial >= 3000) {
+      digitalWrite(LED, LOW);
+      estado = 4;
+      delay(50);
+    }
   }
-  
+
   // estado 3
-  if (estado == 3 && !digitalRead(BOTAO) && digitalRead(LED)) {
-    digitalWrite(13, LOW);
-    estado = 4;
-    delay(50);
+  if (estado == 3) {
+    if (!digitalRead(BOTAO)) {
+      digitalWrite(LED, LOW);
+      estado = 4;
+      delay(50);
+    }
+    if (tempoAtual - tempoInicial >= 3000) {
+      digitalWrite(LED, LOW);
+      estado = 1;
+      delay(50);
+    }
   }
 
   // estado 4
