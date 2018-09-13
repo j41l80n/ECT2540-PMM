@@ -17,6 +17,8 @@ Faça um projeto que altere a intensidade de um LED, usando pwm, baseado em valo
 <img src="miniprojeto1.png" width="350" height="350">
 
 ## Miniprojeto 4
+O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	sinais	gráficos,	utilizando-se	de	sons	curtos	e longos,	além	de	pontos	e	traços	para	transmitir	mensagens.	Nesses	exercícios	iremos	utilizar	o	Código Morse	para	transmitir	dados	acendendo	e	apagando	o	LED.	No	site	abaixo	podemos	ver	todos	os	símbolos	da tabela.	
+
 <img src="miniprojeto1.png" width="350" height="350">
 
 
