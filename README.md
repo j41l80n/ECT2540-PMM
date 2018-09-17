@@ -22,12 +22,12 @@ O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	
 <img src="imagens/miniprojeto1.png" width="350" height="350">
 
 ## Miniprojeto 5
-O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	sinais	gráficos,	utilizando-se	de	sons	curtos	e longos,	além	de	pontos	e	traços	para	transmitir	mensagens.	Nesses	exercícios	iremos	utilizar	o	Código Morse	para	transmitir	dados	acendendo	e	apagando	o	LED.	No	site	abaixo	podemos	ver	todos	os	símbolos	da tabela.	
+O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
 
 <img src="imagens/miniprojeto1.png" width="350" height="350">
 
 ### Miniprojeto 5 - Bônus
-O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	sinais	gráficos,	utilizando-se	de	sons	curtos	e longos,	além	de	pontos	e	traços	para	transmitir	mensagens.	Nesses	exercícios	iremos	utilizar	o	Código Morse	para	transmitir	dados	acendendo	e	apagando	o	LED.	No	site	abaixo	podemos	ver	todos	os	símbolos	da tabela.	
+Faça um instrumento composto por um botão, um potenciômetro e o Piezo. Ao se manter o botão pressionado, o Piezo deve emitir a frequencia definida pelo potenciometro. utilize a função map() para mapear uma ou duas oitavas.	
 
 <img src="imagens/miniprojeto1.png" width="350" height="350">
 
