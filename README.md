@@ -31,4 +31,5 @@ Faça um instrumento composto por um botão, um potenciômetro e o Piezo. Ao se 
 
 <img src="imagens/miniprojeto1.png" width="350" height="350">
 
+teste
 
