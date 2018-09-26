@@ -31,5 +31,7 @@ Faça um instrumento composto por um botão, um potenciômetro e o Piezo. Ao se 
 
 <img src="imagens/miniprojeto1.png" width="350" height="350">
 
-teste
+### Miniprojeto 6
+Faça um "girasol" de uma dimensão utilizando um servomotor e um sensor de luz acoplado a este. O servo deve girar de forma que o sensor de luz aponte para o local com maior luminosidade. Dica: você deve "amostrar" duas luminosidades em ângulos diferentes, girar para a posição da maior, e repetir o processo. Faça melhorias no algoritmo de controle para tornar o movimento mais suave.
 
+<img src="imagens/miniprojeto1.png" width="350" height="350">
