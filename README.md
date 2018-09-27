@@ -19,7 +19,7 @@ Faça um projeto que altere a intensidade de um LED, usando pwm, baseado em valo
 ## Miniprojeto 4
 O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	sinais	gráficos,	utilizando-se	de	sons	curtos	e longos,	além	de	pontos	e	traços	para	transmitir	mensagens.	Nesses	exercícios	iremos	utilizar	o	Código Morse	para	transmitir	dados	acendendo	e	apagando	o	LED.	No	site	abaixo	podemos	ver	todos	os	símbolos	da tabela.	
 
-<img src="imagens/miniprojeto1.png" width="350" height="350">
+<img src="imagens/miniprojeto4.png" width="350" height="350">
 
 ## Miniprojeto 5
 O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
