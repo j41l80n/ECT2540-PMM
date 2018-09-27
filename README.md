@@ -14,7 +14,7 @@ Apresentar	na	serial	quantas	vezes	o	botão	foi	pressionado	e,	quando	receber	a	
 ## Miniprojeto 3 
 Faça um projeto que altere a intensidade de um LED, usando pwm, baseado em valores enviados pelo potenciômetro, lidos utilizando uma porta analógica. Inclua na montagem um botão “offset” que, ao ser pressionado, torna a tensão lida no momento equivalente a uma intensidade de LED igual a zero (apagado). Apresente o valor de “offset” na serial quando o botão for pressionado.
 
-<img src="imagens/miniprojeto1.png" width="350" height="350">
+<img src="imagens/miniprojeto3.png" width="350" height="350">
 
 ## Miniprojeto 4
 O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	sinais	gráficos,	utilizando-se	de	sons	curtos	e longos,	além	de	pontos	e	traços	para	transmitir	mensagens.	Nesses	exercícios	iremos	utilizar	o	Código Morse	para	transmitir	dados	acendendo	e	apagando	o	LED.	No	site	abaixo	podemos	ver	todos	os	símbolos	da tabela.	
