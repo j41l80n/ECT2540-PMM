@@ -24,12 +24,10 @@ O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	
 ## Miniprojeto 5
 O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
 
-<img src="imagens/miniprojeto1.png" width="350" height="350">
+<img src="imagens/miniprojeto5.png" width="350" height="350">
 
 ### Miniprojeto 5 - Bônus
 Faça um instrumento composto por um botão, um potenciômetro e o Piezo. Ao se manter o botão pressionado, o Piezo deve emitir a frequencia definida pelo potenciometro. utilize a função map() para mapear uma ou duas oitavas.	
-
-<img src="imagens/miniprojeto1.png" width="350" height="350">
 
 ### Miniprojeto 6
 Faça um "girasol" de uma dimensão utilizando um servomotor e um sensor de luz acoplado a este. O servo deve girar de forma que o sensor de luz aponte para o local com maior luminosidade. Dica: você deve "amostrar" duas luminosidades em ângulos diferentes, girar para a posição da maior, e repetir o processo. Faça melhorias no algoritmo de controle para tornar o movimento mais suave.
