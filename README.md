@@ -40,4 +40,4 @@ Faça um "girasol" de uma dimensão utilizando um servomotor e um sensor de luz 
 * Cada grupo deverá implementar tanto o papel de servidor como o de cliente, ou seja, o Arduino com potenciometro será inicialmente servidor e em um Segundo momento cliente
 * Qual fez mais sentido: Arduino com potenciometro como servidor ou como cliente? maior, e repetir o processo. Faça melhorias no algoritmo de controle para tornar o movimento mais suave.
 
-<img src="imagens/miniprojeto6.png" width="350" height="350">
+<img src="imagens/miniprojeto7.png" width="350" height="350">
