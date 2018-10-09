@@ -33,3 +33,11 @@ Faça um instrumento composto por um botão, um potenciômetro e o Piezo. Ao se 
 Faça um "girasol" de uma dimensão utilizando um servomotor e um sensor de luz acoplado a este. O servo deve girar de forma que o sensor de luz aponte para o local com maior luminosidade. Dica: você deve "amostrar" duas luminosidades em ângulos diferentes, girar para a posição da maior, e repetir o processo. Faça melhorias no algoritmo de controle para tornar o movimento mais suave.
 
 <img src="imagens/miniprojeto6.png" width="350" height="350">
+
+### Miniprojeto 7
+* Potenciometro e botão em um Arduino controlando LED em outro Arduino usando arquitetura cliente-servidor. O potenciometro controla o brilho, e o botão, ao ser pressionado, desliga o LED.
+* Juntar de dois em dois grupos. Um será o Arduino com potenciometro e o outro o com o LED
+* Cada grupo deverá implementar tanto o papel de servidor como o de cliente, ou seja, o Arduino com potenciometro será inicialmente servidor e em um Segundo momento cliente
+* Qual fez mais sentido: Arduino com potenciometro como servidor ou como cliente? maior, e repetir o processo. Faça melhorias no algoritmo de controle para tornar o movimento mais suave.
+
+<img src="imagens/miniprojeto7.png" width="350" height="350">
