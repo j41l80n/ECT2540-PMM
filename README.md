@@ -25,7 +25,7 @@ O	Código	Morse	é	um	sistema	binário	de	representação de	números,	letras	e	
 O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
 
 <img src="imagens/miniprojeto5.png" width="350" height="350">
-
+ 
 ### Miniprojeto 5 - Bônus
 Faça um instrumento composto por um botão, um potenciômetro e o Piezo. Ao se manter o botão pressionado, o Piezo deve emitir a frequencia definida pelo potenciometro. utilize a função map() para mapear uma ou duas oitavas.	
 
