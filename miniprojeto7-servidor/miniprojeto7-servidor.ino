@@ -1,94 +1,114 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
-#define LED 9
-#define POTENCIOMETRO A0
-#define BOTAO A1
-
-byte mac[] = { 0x1E, 0xAF, 0xBE, 0x2F, 0xFF, 0xED };
-int estado = 1;
-bool ligado = true;
-int intensidadeLED = 255;
-
-EthernetServer server(80);
+byte mac[] = { 0xAE, 0xAE, 0xCE, 0xDF, 0xFE, 0xED }; //physical mac address
+byte ip[] = { 192, 168, 0, 150 };
+EthernetServer server(80); //server port
 String readString;
+int ledPin = 2;
+int botao = 9;
+int potenciometro = A0;
+
+int flag = 0;
+int valpot = 0;
+int valbot = 0;
 void setup() {
+  pinMode(ledPin, OUTPUT); //pin selected to control
+  pinMode(botao, INPUT_PULLUP);
+  pinMode(potenciometro, INPUT);
+
   Serial.begin(9600);
-  while (!Serial) {
-    ; // espera pela serial
-  }
-  Serial.print("teste ");
+
   Ethernet.begin(mac);
+
+  if (Ethernet.linkStatus() == LinkOFF) {
+    Serial.println("Ethernet cable is not connected.");
+  }
+
+  // start the server
   server.begin();
   Serial.print("server is at ");
   Serial.println(Ethernet.localIP());
-  pinMode(BOTAO, INPUT_PULLUP);
 }
 
-
 void loop() {
-  int leitura = map(analogRead(POTENCIOMETRO), 0, 1023, 0, 255);
-  //int intensidadeLED = leitura < 0 ? 0 : leitura > 255 ? 255 : leitura;
 
-  if (ligado) {
-    analogWrite(LED, intensidadeLED);
-  }
-  else
-  {
-    digitalWrite(LED, LOW);
-  }
 
-  if (estado == 1 && !digitalRead(BOTAO)) {
-    ligado = !ligado;
-    estado = 2;
-    delay(10);
-  }
+  /*valpot = analogRead(A0);
+  valpot = valpot / 4;
+  Serial.print(" Valor Potenciometro: ");
+  Serial.print(valpot);
+  Serial.print("Valor Botao: ");
+  Serial.println(valbot);
+  if (!digitalRead(botao) > 0 && valbot == 0) {
+    valbot = 1;
 
-  if (estado == 2 && digitalRead(BOTAO)) {
-    estado = 1;
-    delay(10);
-  }
+    delay(500);
+  } if (!digitalRead(botao) > 0 && valbot == 1) {
+    valbot = 0;
 
+    delay(500);
+  }
+*/
+  // Create a client connection
   EthernetClient client = server.available();
   if (client) {
-    Serial.println("cliente conectado");
-    boolean currentLineIsBlank = true;
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
+        Serial.print("Valor do cliente: ");
+        Serial.println(c);
         //read char by char HTTP request
         if (readString.length() < 100) {
           //store characters to string
           readString += c;
         }
-        //if HTTP request has ended– 0x0D is CarriageReturn \n ASCII
+        //if HTTP request has ended– 0x0D is Carriage Return \n ASCII
         if (c == 0x0D) {
-          client.println("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n");
-          client.println("<HTML><HEAD><TITLE>ARDUINO ETHERNET SHIELD</TITLE></HEAD>");
-          client.println("<BODY><hr><hr><br>");
-          client.println("<H1 style=\"color:green;\">ARDUINO ETHERNET SHIELD<br> Liga/Desliga LED</H1><hr><br>");
-          client.println("<H2><a href=\"?led=LEDON\"\">Liga</a><br></H2>");
-          client.println("<H2><a href=\"?led=LEDOFF\"\">Desliga</a><br></H2>");
-          client.println("</BODY></HTML>");
+
           delay(10);
+
+          if (!digitalRead(botao) > 0 && valbot == 0) {
+            valbot = 1;
+
+            delay(500);
+          } if (!digitalRead(botao) > 0 && valbot == 1) {
+            valbot = 0;
+            delay(500);
+          }
+
           //stopping client
-          client.stop();
           // control arduino pin
-          if (readString.indexOf("led=LEDON") > -1)
+          if (readString.indexOf("val=pot") > -1) //checks for LEDON
           {
-            Serial.println("Acendendo LED...");
-            ligado = true;
+
+            valpot = analogRead(A0);
+            valpot = valpot / 4;
+            Serial.println("Enviando valor potenciometro...");
+            client.print(valpot);
+             client.stop();
+          //clearing string for next read
+          readString = "";
           }
           else {
-            if (readString.indexOf("led=LEDOFF") > -1)
+            
+            if (readString.indexOf("val=bot") > -1) //checks for LEDOFF
             {
-              Serial.println("Apagando LED...");
-              ligado = false;
+
+              Serial.println("Enviando valor do botao...");
+              client.print(valbot);
+             client.stop();
+          //clearing string for next read
+          readString = "";
             }
           }
-          readString = "";
+
         }
       }
+      Serial.print(" Valor Potenciometro: ");
+      Serial.print(valpot);
+      Serial.print("Valor Botao: ");
+      Serial.println(valbot);
     }
   }
 }
