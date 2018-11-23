@@ -12,16 +12,16 @@ EthernetClient client;
 void setup() {
   Serial.begin(9600);
   while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
+    ; // espera pela conexao com porta serial
   }
-  Serial.println("Initialize Ethernet with DHCP:");
+  Serial.println("iniciando com Ethernet modo DHCP:");
   Ethernet.begin(mac);
-  delay(1000);
-  Serial.print("client is at ");
+  Serial.print("cliente com endereco: ");
   Serial.println(Ethernet.localIP());
 }
 
 void loop() {
+<<<<<<< HEAD
   bot();
   delay(1000);
 //  client.println("Connection: close");
@@ -31,15 +31,18 @@ void loop() {
 }
 
 void potenciometro() {
+=======
+>>>>>>> 86cb67d0e89d27fb83f41db73366128a77a2e716
   int len = client.available();
   //Serial.println(len);
   if (len > 0) {
-    Serial.print("recebendo ");
+    Serial.print("recebendo: ");
     Serial.println(len);
     byte buffer[80];
     if (len > 80) len = 80;
     client.read(buffer, len);
-    Serial.write(buffer, len); // show in the serial monitor (slows some boards)
+    // mostra dados recebidos na serial
+    Serial.write(buffer, len);
     Serial.println();
     String s = String((char *)buffer);
     int v = s.toInt();
@@ -48,7 +51,7 @@ void potenciometro() {
     Serial.println(v);
   }
 
-  // if the server's disconnected, stop the client:
+  // se o servidor desconectar
   if (!client.connected()) {
     client.stop();
     Serial.println("disconected");
@@ -56,12 +59,11 @@ void potenciometro() {
     Serial.print("connecting to ");
     Serial.print(server);
     Serial.println("...");
-
-    // if you get a connection, report back via serial:
+    
     if (client.connect(server, 80)) {
       Serial.print("connected to ");
       Serial.println(client.remoteIP());
-      // Make a HTTP request:
+      // requisicao HTTP
       client.println("GET /?val=pot");
       client.println("Host: 10.6.9.81");
       client.println("Connection: close");
