@@ -1,114 +1,121 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
-byte mac[] = { 0xAE, 0xAE, 0xCE, 0xDF, 0xFE, 0xED }; //physical mac address
-byte ip[] = { 192, 168, 0, 150 };
-EthernetServer server(80); //server port
-String readString;
-int ledPin = 2;
-int botao = 9;
-int potenciometro = A0;
+#define LED 6
+int potenc = 1;
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xAD };
+// endereço do servidor
+char server[] = "10.6.9.81";
 
-int flag = 0;
-int valpot = 0;
-int valbot = 0;
+EthernetClient client;
+
 void setup() {
-  pinMode(ledPin, OUTPUT); //pin selected to control
-  pinMode(botao, INPUT_PULLUP);
-  pinMode(potenciometro, INPUT);
-
   Serial.begin(9600);
-
-  Ethernet.begin(mac);
-
-  if (Ethernet.linkStatus() == LinkOFF) {
-    Serial.println("Ethernet cable is not connected.");
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
   }
-
-  // start the server
-  server.begin();
-  Serial.print("server is at ");
+  Serial.println("Initialize Ethernet with DHCP:");
+  Ethernet.begin(mac);
+  delay(1000);
+  Serial.print("client is at ");
   Serial.println(Ethernet.localIP());
 }
 
 void loop() {
+  bot();
+  delay(1000);
+  potenciometro();
+  delay(1000);
+}
 
-
-  /*valpot = analogRead(A0);
-  valpot = valpot / 4;
-  Serial.print(" Valor Potenciometro: ");
-  Serial.print(valpot);
-  Serial.print("Valor Botao: ");
-  Serial.println(valbot);
-  if (!digitalRead(botao) > 0 && valbot == 0) {
-    valbot = 1;
-
-    delay(500);
-  } if (!digitalRead(botao) > 0 && valbot == 1) {
-    valbot = 0;
-
-    delay(500);
+void potenciometro() {
+  int len = client.available();
+  //Serial.println(len);
+  if (len > 0) {
+    Serial.print("recebendo ");
+    Serial.println(len);
+    byte buffer[80];
+    if (len > 80) len = 80;
+    client.read(buffer, len);
+    Serial.write(buffer, len); // show in the serial monitor (slows some boards)
+    Serial.println();
+    String s = String((char *)buffer);
+    int v = s.toInt();
+    potenc = v;
+    analogWrite(LED, v);
+    Serial.println(v);
   }
-*/
-  // Create a client connection
-  EthernetClient client = server.available();
-  if (client) {
-    while (client.connected()) {
-      if (client.available()) {
-        char c = client.read();
-        Serial.print("Valor do cliente: ");
-        Serial.println(c);
-        //read char by char HTTP request
-        if (readString.length() < 100) {
-          //store characters to string
-          readString += c;
-        }
-        //if HTTP request has ended– 0x0D is Carriage Return \n ASCII
-        if (c == 0x0D) {
 
-          delay(10);
+  // if the server's disconnected, stop the client:
+  if (!client.connected()) {
+    client.stop();
+    Serial.println("disconected");
+    delay(5000);
+    Serial.print("connecting to ");
+    Serial.print(server);
+    Serial.println("...");
 
-          if (!digitalRead(botao) > 0 && valbot == 0) {
-            valbot = 1;
+    // if you get a connection, report back via serial:
+    if (client.connect(server, 80)) {
+      Serial.print("connected to ");
+      Serial.println(client.remoteIP());
+      // Make a HTTP request:
+      client.println("GET /?val=pot");
+      client.println("Host: 10.6.9.81");
+      client.println("Connection: close");
+      client.println();
+    } else {
+      Serial.println("connection failed");
+    }
+  }
+}
 
-            delay(500);
-          } if (!digitalRead(botao) > 0 && valbot == 1) {
-            valbot = 0;
-            delay(500);
-          }
+void bot() {
+  int len = client.available();
+  Serial.print("len ");
+  Serial.println(len);
+  if (len > 0) {
+    Serial.print("recebendo ");
+    Serial.println(len);
+    byte buffer[80];
+    if (len > 80) len = 80;
+    client.read(buffer, len);
+    Serial.write(buffer, len); // show in the serial monitor (slows some boards)
+    Serial.println();
+    String s = String((char *)buffer);
+    int v = s.toInt();
+    Serial.print("botao: ");
+    Serial.println(v);
+    if (v == 1)
+    {
+      analogWrite(LED, potenciometro);
+    }
+    else
+    {
+      analogWrite(LED, LOW);
+    }
+  }
 
-          //stopping client
-          // control arduino pin
-          if (readString.indexOf("val=pot") > -1) //checks for LEDON
-          {
+  // if the server's disconnected, stop the client:
+  if (!client.connected()) {
+    client.stop();
+    Serial.println("disconected");
+    delay(500);
+    Serial.print("connecting to ");
+    Serial.print(server);
+    Serial.println("...");
 
-            valpot = analogRead(A0);
-            valpot = valpot / 4;
-            Serial.println("Enviando valor potenciometro...");
-            client.print(valpot);
-             client.stop();
-          //clearing string for next read
-          readString = "";
-          }
-          else {
-            
-            if (readString.indexOf("val=bot") > -1) //checks for LEDOFF
-            {
-
-              Serial.println("Enviando valor do botao...");
-              client.print(valbot);
-             client.stop();
-          //clearing string for next read
-          readString = "";
-            }
-          }
-
-        }
-      }
-      Serial.print(" Valor Potenciometro: ");
-      Serial.print(valpot);
-      Serial.print("Valor Botao: ");
-      Serial.println(valbot);
+    // if you get a connection, report back via serial:
+    if (client.connect(server, 80)) {
+      Serial.print("connected to ");
+      Serial.println(client.remoteIP());
+      // Make a HTTP request:
+      client.println("GET /?val=bot");
+      client.println("Host: 10.6.9.81");
+      client.println("Connection: close");
+      client.println();
+    } else {
+      Serial.println("connection failed");
     }
   }
 }
