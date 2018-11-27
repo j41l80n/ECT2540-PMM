@@ -52,3 +52,4 @@ O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as
 O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
 
 <img src="" width="350" height="350">
+
