@@ -21,18 +21,13 @@ void setup() {
 }
 
 void loop() {
-<<<<<<< HEAD
   bot();
   delay(1000);
-//  client.println("Connection: close");
-//  client.stop();
   potenciometro();
   delay(1000);
 }
 
 void potenciometro() {
-=======
->>>>>>> 86cb67d0e89d27fb83f41db73366128a77a2e716
   int len = client.available();
   //Serial.println(len);
   if (len > 0) {
