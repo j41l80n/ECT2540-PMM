@@ -41,3 +41,15 @@ Faça um "girasol" de uma dimensão utilizando um servomotor e um sensor de luz 
 * Qual fez mais sentido: Arduino com potenciometro como servidor ou como cliente? maior, e repetir o processo. Faça melhorias no algoritmo de controle para tornar o movimento mais suave.
 
 <img src="imagens/miniprojeto7.png" width="350" height="350">
+
+
+## Miniprojeto 8
+O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
+
+<img src="" width="350" height="350">
+
+## Miniprojeto 9
+O	Usar o Piezo com WPM para fazer música. Seu programa deve ter um vetor com as notas da música, incluindo pausas, e outro vetor do mesmo tamanho com a duração de cada nota (vetor de inteiros, onde 1 é a duração de um tempo de música, 2 o dobro, e assim por diante). Utilize comandos tone() e dalay(). Lembre-se de dar uma pausa pequena entre duas notas quaisquer.	
+
+<img src="" width="350" height="350">
+
